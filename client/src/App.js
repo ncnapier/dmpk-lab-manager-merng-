@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 // import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-
+import { useQuery } from '@apollo/client';
+import gql from 'graphql-tag'
 // import 'semantic-ui-css/semantic.min.scc';
 import './App.css';
 
@@ -15,11 +16,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Instruments from './pages/Instruments';
 
+
+
 function App() {
   return (
     <BrowserRouter>
       <Container>
-      
+     
     
         <MenuBar />
           <Routes>

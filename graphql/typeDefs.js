@@ -11,6 +11,15 @@ module.exports = gql`
     likeCount: Int!
     commentCount: Int!
   }
+  type Run {
+    id: ID!
+    instrument: String!
+    assay: String!
+    trays: String!
+    createdAt: String!
+    username: String!
+    comments: [Comment]!
+  }
   type Comment{
       id: ID!
       createdAt: String!
@@ -41,6 +50,8 @@ module.exports = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
+    getRuns: [Run]
+    getRun(runId: ID!): Run
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
@@ -50,6 +61,8 @@ module.exports = gql`
     createComment(postId: String!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
+    createRun(instrument: String!, assay: String!, trays: String!): Run!
+    deleteRun(runId: ID!): String!
   }
   
 `;
