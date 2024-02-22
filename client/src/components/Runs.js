@@ -1,50 +1,76 @@
-
+import React, { useState, Component } from 'react';
+import  {RadialMenu}  from 'react-radial-menu'
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag'
+import SixtyFiveHundredRuns from './6500Runs'
+import FiftyFiveHundredRuns from './5500Runs'
+import NewFourtyFiveHundredRuns from './New4500Runs'
+import OldFourtyFiveHundredRuns from './Old4500Runs'
+import { Form } from 'semantic-ui-react';
 
-const GET_RUNS = gql`
-  query {
-    getRuns {
-      id
-      instrument
-      trays
-      assay
-      username
-      comments {
-        id
-      }
-      createdAt
-      }
-    }
+// const ComponentA = () => <SixtyFiveHundredRuns />
 
-`
-function DisplayRuns() {
-  const { loading, error, data } = useQuery(GET_RUNS);
+
+//     const [selectedComponent, setSeletedComponent] = useState(null);
+
+//     const handleSelectComponent = (component) => {
+//         setSeletedComponent(component);
+//     };
+
+
+
+
+class Runs extends Component {
+    state = {}
   
+    handleChange = (e, { value }) => this.setState({ value })
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
 
-  return data.getRuns.map(({ id, instrument, username, trays, assay, createdAt, comments }) => (
-    <div key={id}>
-      <h3>{instrument} Run:</h3>
-      <p>User: {username}</p>
-      <p>Trays: {trays.split(" ")[0]} and {trays.split(" ")[1]}</p>
-      <p>Run Created: {Date(createdAt)}</p>
-      <p>Assay Type: {assay}</p>
-      <p>Comments: {comments}</p>
-      
-      <br />
-      
-      
-      <br />
-    </div>
-  ));
+    render(){
+    const {value} = this.state;
+    return (
+        
+       <div>
+        {/* <RadialMenu onSelect={handleSelectComponent}>
+            <RadialMenu.Option value={<ComponentA />} />
+        </RadialMenu> */}
+        <Form>
+        <Form.Group inline>
+          <label>Instruments</label>
+          <Form.Radio
+            label='6500'
+            value={<SixtyFiveHundredRuns />}
+            checked={value == '<SixtyFiveHundredRuns />'}
+            onChange={this.handleChange}
+          />
+          <Form.Radio
+            label='5500'
+            value= {<FiftyFiveHundredRuns />}
+            checked={value === <FiftyFiveHundredRuns />}
+            onChange={this.handleChange}
+          />
+          <Form.Radio
+            label='New 4500'
+            value= {<NewFourtyFiveHundredRuns />}
+            checked={value === <NewFourtyFiveHundredRuns />}
+            onChange={this.handleChange}
+          />
+          <Form.Radio
+            label='Old 4500'
+            value= {<OldFourtyFiveHundredRuns />}
+            checked={value === '<OldFourtyFiveHundredRuns />'}
+            onChange={this.handleChange}
+          />
+         
+         
+        </Form.Group>
+        </Form>
+        <div>
+            {value}
+        </div>
+       </div>
+  )
 }
-function Runs(){
-    return(
-    <DisplayRuns />
-    )
 }
 
 export default Runs

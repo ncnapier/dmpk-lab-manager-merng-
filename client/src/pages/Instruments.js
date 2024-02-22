@@ -5,6 +5,7 @@ import Runs from '../components/Runs';
 
 
 
+
 function Instruments(){
     return (
         <div>
@@ -13,6 +14,7 @@ function Instruments(){
             <h2>Create New Run:</h2>
             <AddRun/>
             <Runs/>
+           
         </div>
     )
 }
