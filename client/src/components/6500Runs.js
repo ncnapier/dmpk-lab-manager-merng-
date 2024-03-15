@@ -16,10 +16,8 @@ const GET_RUNS = gql`
       trays
       assay
       username
-      comments {
-        id
-      }
       createdAt
+      comments
       }
     }
 
@@ -47,6 +45,7 @@ function DisplayRuns6500() {
                     <p>Run Created: {Date(createdAt)}</p>
                     <p>Assay Type: {assay}</p>
                     <p>Comments: {comments}</p>
+                 
 
                     <br />
 

@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react'
+import { useMutation, gql } from '@apollo/client';
 import Datetime from 'react-datetime';
 import {
   FormTextArea,
@@ -13,6 +14,19 @@ import {
   Container
 } from 'semantic-ui-react'
 
+const CREATE_RUN = gql`
+  mutation createRun( $instrument: String!, $assay: String!, $trays: String!) {
+    createRun(instrument: $instrument, assay: $assay, trays: $trays) {
+      
+      instrument
+      assay
+      trays
+      
+     
+      
+    }
+  }
+`;
 
 const options = [
   { key: 'p', text: 'PPB-BHB', value: 'ppbbhb' },

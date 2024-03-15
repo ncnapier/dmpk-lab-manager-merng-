@@ -31,16 +31,14 @@ class Runs extends Component {
     return (
         
        <div>
-        {/* <RadialMenu onSelect={handleSelectComponent}>
-            <RadialMenu.Option value={<ComponentA />} />
-        </RadialMenu> */}
+       
         <Form>
         <Form.Group inline>
           <label>Instruments</label>
           <Form.Radio
             label='6500'
             value={<SixtyFiveHundredRuns />}
-            checked={value == '<SixtyFiveHundredRuns />'}
+            checked={value === <SixtyFiveHundredRuns />}
             onChange={this.handleChange}
           />
           <Form.Radio

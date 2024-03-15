@@ -8,10 +8,20 @@ const { MONGODB } = require('./config');
 
 
 
+// const  checkAuth  = require('./util/check-auth');
+
+
+
+
+
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ req })
+    context: ({ req }) => {  (req)
+    // const authHeader = req.headers.authorization || '';
+    // return { ...checkAuth(authHeader) };
+}
 });
 
 mongoose.connect(MONGODB, { useNewURLParser: true})

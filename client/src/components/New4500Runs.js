@@ -7,17 +7,15 @@ import gql from 'graphql-tag'
 const GET_RUNS = gql`
   query {
     getRuns {
-      id
-      instrument
-      trays
-      assay
-      username
-      comments {
         id
+        instrument
+        trays
+        assay
+        username
+        createdAt
+        comments
+        }
       }
-      createdAt
-      }
-    }
 
 `
 function DisplayRunsNew4500() {

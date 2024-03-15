@@ -17,8 +17,8 @@ module.exports = gql`
     assay: String!
     trays: String!
     createdAt: String!
-    username: String!
-    comments: [Comment]!
+    username: String
+    comments: [Comment]
   }
   type Comment{
       id: ID!

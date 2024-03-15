@@ -1,7 +1,8 @@
 import React from 'react'
-import Header from '../components/Header';
-import AddRun from '../components/AddRun';
+
+import AddRun from '../components/NewRun';
 import Runs from '../components/Runs';
+import AddRunForm from '../components/NewRun';
 
 
 
@@ -10,9 +11,10 @@ function Instruments(){
     return (
         <div>
             <h1>Instruments Page</h1>
-            <Header />
+            
             <h2>Create New Run:</h2>
             <AddRun/>
+            <AddRunForm/>
             <h2>Current Runs:</h2>
             <Runs/>
            

@@ -1,7 +1,7 @@
 const { AuthenticationError, UserInputError } = require("apollo-server");
 
 const Run = require("../../models/Run");
-const checkAuth = require("../../util/check-auth");
+// const checkAuth = require("../../util/check-auth");
 
 module.exports = {
     Query: {
@@ -28,7 +28,7 @@ module.exports = {
     },
     Mutation: {
         async createRun(_, { instrument, assay, trays }, context) {
-            const user = checkAuth(context);
+            // const user = checkAuth(context);
 
             if (instrument.trim() === '') {
                 throw new Error('Instrument must be selected');
@@ -44,8 +44,7 @@ module.exports = {
                 instrument,
                 assay,
                 trays,
-                user: user.id,
-                username: user.username,
+                
                 createdAt: new Date().toISOString(),
             });
 
