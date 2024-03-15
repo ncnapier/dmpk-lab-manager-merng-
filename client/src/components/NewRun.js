@@ -169,12 +169,12 @@ const AddRun = () => {
     console.log(e.target.value)
     console.log(formData)
   };
-  // const authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzkwOWJkNzJmNWNkNzQzYTY3MjkwNSIsImVtYWlsIjoibmV3ZXN0QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcwOTMyMTc3OSwiZXhwIjoxNzA5MzI1Mzc5fQ.BR_Dnrb5Lzon0KXCC2B0e2QhJoebL1qTIIVDbE9B-q0";
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
        // Manually provide your auth authHeader here
-      //  const authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzkwOWJkNzJmNWNkNzQzYTY3MjkwNSIsImVtYWlsIjoibmV3ZXN0QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidXNlciIsImlhdCI6MTcwOTMyMTc3OSwiZXhwIjoxNzA5MzI1Mzc5fQ.BR_Dnrb5Lzon0KXCC2B0e2QhJoebL1qTIIVDbE9B-q0";
+     
       await createRun({ variables: { ...formData } });
       
       console.log('Run created successfully');
