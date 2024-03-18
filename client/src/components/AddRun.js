@@ -59,7 +59,7 @@ class AddRun extends Component {
               <label>Instrument</label>
               <FormRadio
                 label='Old 4500'
-                value='old4500'
+                value={'old4500'
                 checked={value === 'old4500'}
                 onChange={this.handleChange}
 

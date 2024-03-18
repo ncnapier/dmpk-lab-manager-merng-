@@ -14,7 +14,7 @@ function Instruments(){
             
             <h2>Create New Run:</h2>
             <AddRun/>
-            <AddRunForm/>
+            
             <h2>Current Runs:</h2>
             <Runs/>
            

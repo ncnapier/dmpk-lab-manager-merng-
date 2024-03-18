@@ -131,7 +131,18 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 
-
+import {
+  FormTextArea,
+  FormSelect,
+  FormRadio,
+  FormInput,
+  FormGroup,
+  FormCheckbox,
+  FormButton,
+  FormField,
+  Form,
+  Container
+} from 'semantic-ui-react'
 
 
 
@@ -150,7 +161,12 @@ const CREATE_RUN = gql`
   }
 `;
 
-
+const options = [
+  { key: 'p', text: 'PPB-BHB', value: 'PPB-BHB' },
+  { key: '4', text: 'P450', value: 'P450' },
+  { key: 'c', text: 'CLint', value: 'CLint' },
+  { key: 'o', text: 'Other', value: 'other' },
+]
 
 
 const AddRun = () => {
@@ -163,11 +179,28 @@ const AddRun = () => {
 
   });
   
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.name)
-    console.log(e.target.value)
-    console.log(formData)
+  const handleChange = (_, { value }) => {
+    setFormData({ ...formData, instrument: value});
+   
+  };
+
+  const handleAssayChange = (_, { value }) => {
+    setFormData({ ...formData, assay: value });
+  };
+
+  const handleCheckboxChange = (_, { label }) => {
+    const { trays } = formData;
+    let updatedTrays = trays;
+  
+    if (trays.includes(label)) {
+      // Remove the label from the string
+      updatedTrays = trays.split(',').filter(tray => tray !== label).join(',');
+    } else {
+      // Add the label to the string
+      updatedTrays = trays ? `${trays},${label}` : label;
+    }
+  
+    setFormData({ ...formData, trays: updatedTrays });
   };
   
   const handleSubmit = async (e) => {
@@ -187,23 +220,66 @@ const AddRun = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Instrument:
-          <input type="text" name="instrument" value={formData.instrument} onChange={handleChange} />
-        </label>
-        <label>
-          Assay:
-          <input type="text" name="assay" value={formData.assay} onChange={handleChange} />
-        </label>
-        <label>
-          Trays:
-          <input type="text" name="trays" value={formData.trays} onChange={handleChange} />
-        </label>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup inline >
+        
+          
+        <label>Instrument</label>
+              <FormRadio
+                label='Old 4500'
+                value={'old4500'}
+                checked={formData.instrument === 'old4500'}
+                onChange={handleChange}
+
+              />
+              <FormRadio
+                label='New 4500'
+                value='new4500'
+                checked={formData.instrument === 'new4500'}
+                onChange={handleChange}
+              />
+              <FormRadio
+                label='5500'
+                value='5500'
+                checked={formData.instrument === '5500'}
+                onChange={handleChange}
+              />
+              <FormRadio
+                label='6500'
+                value='6500'
+                checked={formData.instrument === '6500'}
+                onChange={handleChange}
+              />
+
+        
+        </FormGroup>
+        
+        <FormSelect
+          fluid
+          label='Assay'
+          options={options}
+          placeholder='Select Assay'
+          onChange={handleAssayChange}
+        />
+        
+        
+        <Form.Group grouped>
+          <label>Trays Used:</label>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((num) => (
+            <FormCheckbox
+              key={num}
+              label={num.toString()}
+              
+              checked={formData.trays.includes(num.toString())}
+              onChange={handleCheckboxChange}
+            />
+          ))}
+        </Form.Group>
+        
 
 
-        <button type="submit">Create Run</button>
-      </form>
+        <FormButton type="submit">Create Run</FormButton>
+      </Form>
     </div>
   
   );

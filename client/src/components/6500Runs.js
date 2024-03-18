@@ -40,7 +40,7 @@ function DisplayRuns6500() {
                 <div key={id}>
                     
                     <p>User: {username}</p>
-                    <p>Trays: {trays.split(" ")[0]} and {trays.split(" ")[1]}</p>
+                    <p>Trays: {trays.split(" ")[0]}  {trays.split(" ")[1]} {trays.split(" ")[2]}</p>
 
                     <p>Run Created: {Date(createdAt)}</p>
                     <p>Assay Type: {assay}</p>
