@@ -1,8 +1,10 @@
 const { model, Schema} = require('mongoose');
 
 const runSchema = new Schema({
-    instrument: String,
     
+    
+    instrument: String,
+  
     assay: String,
     trays: String,
     createdAt: String,
@@ -17,5 +19,7 @@ const runSchema = new Schema({
 
 
 });
+
+
 
 module.exports = model('Run', runSchema);

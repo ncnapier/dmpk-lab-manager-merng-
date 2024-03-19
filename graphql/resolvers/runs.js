@@ -54,17 +54,18 @@ module.exports = {
 
             return run;
         },
-        async deleteRun(_, { runId }, context) {
-            const user = checkAuth(context);
+        async deleteRun(_, { runId }) {
+            // const user = checkAuth(context);
 
             try {
                 const run = await Run.findById(runId);
-                if (user.username === run.username) {
+                // if (user.username === run.username) {
                     await run.deleteOne();
                     return "Run deleted successfully";
-                } else {
-                    throw new AuthenticationError("Action not allowed");
-                }
+                // } else {
+                    // throw new AuthenticationError("Action not allowed");
+
+                // }
             } catch (err) {
                 throw new Error(err);
             }

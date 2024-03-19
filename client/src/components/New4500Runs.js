@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag'
-
+import DeleteRun from './DeleteRun';
 
 
 
@@ -41,7 +41,7 @@ function DisplayRunsNew4500() {
                     <p>Run Created: {createdAt}</p>
                     <p>Assay Type: {assay}</p>
                     <p>Comments: {comments}</p>
-
+                    <DeleteRun runId = {String(id)}/>
                     <br />
 
 
