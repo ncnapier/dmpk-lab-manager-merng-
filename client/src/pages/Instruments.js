@@ -17,7 +17,7 @@ function Instruments(){
             
             <h2>Current Runs:</h2>
             <Runs/>
-           
+            {/* <DisplayRunsByInstrument /> */}
         </div>
     )
 }

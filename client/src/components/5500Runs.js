@@ -21,7 +21,16 @@ const GET_RUNS = gql`
 `
 function DisplayRuns5500() {
     const { loading, error, data } = useQuery(GET_RUNS);
-   
+    const options = {
+        weekday: 'long', // full day of the week
+        year: 'numeric', // full year
+        month: 'long', // full month name
+        day: 'numeric', // day of the month
+        hour: 'numeric', // 12-hour format
+        minute: 'numeric', // minutes
+        second: 'numeric', // seconds
+        hour12: true, // use 12-hour format
+      };
 
 
     let fiftyFive = []
@@ -38,8 +47,8 @@ function DisplayRuns5500() {
                     
                     <p>User: {username}</p>
                     <p>Trays: {trays.split(" ")[0]}  {trays.split(" ")[1]} {trays.split(" ")[2]}</p>
-
-                    <p>Run Created: {Date(createdAt)}</p>
+                    <p>Run Created: {new Date(createdAt).toLocaleString()}</p>
+                  
                     <p>Assay Type: {assay}</p>
                     <p>Comments: {comments}</p>
                     <p>ID: {id}</p>

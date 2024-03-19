@@ -38,7 +38,7 @@ function DisplayRunsOld4500() {
                     <p>User: {username}</p>
                     <p>Trays: {trays.split(" ")[0]}  {trays.split(" ")[1]} {trays.split(" ")[2]}</p>
 
-                    <p>Run Created: {createdAt}</p>
+                    <p>Run Created: {new Date(createdAt).toLocaleString()}</p>
                     <p>Assay Type: {assay}</p>
                     <p>Comments: {comments}</p>
                     <DeleteRun runId = {String(id)}/>
