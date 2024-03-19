@@ -28,8 +28,13 @@ const DeleteRun = ({ runId }) => {
     };
   
     return (
-      <button onClick={handleDelete}>Delete Run</button>
+      <button 
+       style={{
+        color: 'white',
+        backgroundColor: 'red',
+        borderColor: 'red'
+    }} onClick={handleDelete}>Delete Run</button>
     );
   };
-  
+ 
   export default DeleteRun;
