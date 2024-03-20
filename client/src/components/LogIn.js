@@ -78,6 +78,7 @@ navigate('/');
       </FormField>
 
       <Button type="submit">Login</Button>
+      <Button href="./register">Register</Button>
     </Form>
   );
 };

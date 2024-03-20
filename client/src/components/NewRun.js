@@ -100,6 +100,7 @@ const AddRun = () => {
       const { data } = await createRun({ variables });
       setRunData(data.createRun);
       console.log('Run created successfully');
+      setFormData({instrument: '', assay: '', trays: ''})
       
     } catch (error) {
       console.error('Error creating run:', error);

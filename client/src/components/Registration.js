@@ -54,7 +54,7 @@ const Registration = () => {
         password: '',
         confirmPassword: '',
   });
-  navigate('/');
+  navigate('/login');
       } catch (err) {
         alert(err.message)
         console.error('registration error:', err.message);
@@ -103,6 +103,12 @@ const Registration = () => {
     </FormField>
    
     <Button type='submit'>Submit</Button>
+    <Button href='./login'
+      style={{
+        
+        marginLeft: '1rem'
+      }}
+    >Login</Button>
   </Form>
 )
  
