@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
 import { FormField, Button, Form } from 'semantic-ui-react';
+import { useMutation, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+
+const LOGIN = gql`
+  mutation login( $username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      
+      id
+      username
+      token
+      
+     
+      
+    }
+  }
+`;
 
 const LogIn = () => {
+  const [login, {loading, error}] = useMutation(LOGIN);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,15 +34,22 @@ const LogIn = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Here you can send the formData to your backend for authentication
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({
-      username: '',
-      password: '',
-    });
+    try {
+      //send login mutation
+     const { data } = await login({variables: {...formData}}); 
+     const user = data.login;
+     console.log('successful login', user);
+     setFormData({
+  username: '',
+  password: '',
+});
+navigate('/');
+    } catch (err) {
+      console.error('Login error:', err.message);
+    }
+   
   };
 
   return (

@@ -27,6 +27,7 @@ const CREATE_RUN = gql`
       assay
       trays
       
+      
      
       
     }
@@ -41,7 +42,7 @@ const options = [
 ]
 
 
-const AddRun = ({ refetchRuns }) => {
+const AddRun = ({username, refetchRuns }) => {
   const [createRun] = useMutation(CREATE_RUN);
   const [formData, setFormData] = useState({
     instrument: '',
@@ -83,7 +84,7 @@ const AddRun = ({ refetchRuns }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await createRun({ variables: { ...formData } });
+      const { data } = await createRun({ variables: { ...formData, username: username, } });
       setRunData(data.createRun);
       console.log('Run created successfully');
       refetchRuns();

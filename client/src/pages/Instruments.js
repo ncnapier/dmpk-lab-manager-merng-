@@ -13,7 +13,7 @@ function Instruments(){
             <h1>Instruments Page</h1>
             
             <h2>Create New Run:</h2>
-            <AddRun/>
+            <AddRun />
             
             <h2>Current Runs:</h2>
             <Runs/>

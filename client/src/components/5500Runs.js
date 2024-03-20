@@ -21,16 +21,7 @@ const GET_RUNS = gql`
 `
 function DisplayRuns5500() {
     const { loading, error, data } = useQuery(GET_RUNS);
-    const options = {
-        weekday: 'long', // full day of the week
-        year: 'numeric', // full year
-        month: 'long', // full month name
-        day: 'numeric', // day of the month
-        hour: 'numeric', // 12-hour format
-        minute: 'numeric', // minutes
-        second: 'numeric', // seconds
-        hour12: true, // use 12-hour format
-      };
+    
 
 
     let fiftyFive = []
