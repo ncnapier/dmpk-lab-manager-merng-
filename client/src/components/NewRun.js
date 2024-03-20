@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import DisplayRunsByInstrument from './DisplayRunsByInstrument';
 import {
@@ -20,12 +20,13 @@ import {
 
 
 const CREATE_RUN = gql`
-  mutation createRun( $instrument: String!, $assay: String!, $trays: String!) {
-    createRun(instrument: $instrument, assay: $assay, trays: $trays) {
+  mutation createRun( $instrument: String!, $assay: String!, $trays: String!, $username: String!) {
+    createRun(instrument: $instrument, assay: $assay, trays: $trays, username: $username) {
       
       instrument
       assay
       trays
+      username
       
       
      
@@ -42,7 +43,7 @@ const options = [
 ]
 
 
-const AddRun = ({username, refetchRuns }) => {
+const AddRun = () => {
   const [createRun] = useMutation(CREATE_RUN);
   const [formData, setFormData] = useState({
     instrument: '',
@@ -52,6 +53,16 @@ const AddRun = ({username, refetchRuns }) => {
 
   });
   const [runData, setRunData] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    console.log(storedUsername);
+    if (storedUsername){
+      setUsername(storedUsername);
+      console.log(setUsername);
+    }
+  }, []);
 
   const handleChange = (_, { value }) => {
     setFormData({ ...formData, instrument: value });
@@ -84,13 +95,15 @@ const AddRun = ({username, refetchRuns }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await createRun({ variables: { ...formData, username: username, } });
+      const variables = { ...formData, username };
+      console.log('variable', variables)
+      const { data } = await createRun({ variables });
       setRunData(data.createRun);
       console.log('Run created successfully');
-      refetchRuns();
+      
     } catch (error) {
       console.error('Error creating run:', error);
-      console.log({ ...formData });
+      console.log({ ...formData, username });
     }
   };
 

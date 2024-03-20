@@ -8,6 +8,7 @@ const LOGIN = gql`
     login(username: $username, password: $password) {
       
       id
+      email
       username
       token
       
@@ -39,14 +40,16 @@ const LogIn = () => {
     try {
       //send login mutation
      const { data } = await login({variables: {...formData}}); 
-     const user = data.login;
+     const {user, username} = data.login;
      console.log('successful login', user);
+     localStorage.setItem('username', username);
      setFormData({
   username: '',
   password: '',
 });
 navigate('/');
     } catch (err) {
+      alert(error)
       console.error('Login error:', err.message);
     }
    

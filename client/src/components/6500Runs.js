@@ -35,11 +35,12 @@ function DisplayRuns6500() {
             sixtyFive.push(data.getRuns[i])
             console.log(sixtyFive)
         }
+       
     }
             return sixtyFive.map(({ id, instrument, username, trays, assay, createdAt, comments }) => (
                 <div key={id}>
-                    
-                    <p>User: {username}</p>
+                    {console.log(username)}
+                    <p>User:   {username}</p>
                     <p>Trays: {trays.split(" ")[0]}  {trays.split(" ")[1]} {trays.split(" ")[2]}</p>
 
                     <p>Run Created: {new Date(createdAt).toLocaleString()}</p>

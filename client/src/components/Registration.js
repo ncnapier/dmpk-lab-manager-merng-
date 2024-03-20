@@ -56,7 +56,7 @@ const Registration = () => {
   });
   navigate('/');
       } catch (err) {
-        
+        alert(err.message)
         console.error('registration error:', err.message);
       }
   };

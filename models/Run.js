@@ -4,7 +4,7 @@ const runSchema = new Schema({
     
     
     instrument: String,
-  
+    username: String,
     assay: String,
     trays: String,
     createdAt: String,

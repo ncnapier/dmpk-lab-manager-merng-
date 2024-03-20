@@ -27,7 +27,7 @@ module.exports = {
         }
     },
     Mutation: {
-        async createRun(_, { instrument, assay, trays }, context) {
+        async createRun(_, { instrument, assay, trays, username }, context) {
             // const user = checkAuth(context);
 
             if (instrument.trim() === '') {
@@ -44,6 +44,7 @@ module.exports = {
                 instrument,
                 assay,
                 trays,
+                username,
                 
                 createdAt: new Date().toISOString(),
             });
