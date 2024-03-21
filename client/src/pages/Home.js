@@ -6,7 +6,8 @@ import { Grid, GridRow, GridColumn, Image } from "semantic-ui-react";
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery } from "@apollo/client";
 // import { FETCH_POSTS_QUERY } from "../util/graphql";
 import gql from 'graphql-tag'
-import PostCard from '../components/NewPost';
+import PostCard from '../components/PostCard';
+import AddPost from '../components/NewPost'
 
 function Home(){
 
@@ -44,8 +45,10 @@ function Home(){
             <h1>DMPK Lab Home</h1>
            
 
-            <Grid columns={3} >
+            <Grid columns={1} >
         <GridRow className="page-title">
+            <AddPost />
+            
             <h1>Recent Posts</h1>
         </GridRow>
     <GridRow>
@@ -53,8 +56,8 @@ function Home(){
           <h1>Loading Posts...</h1>
       ) : (
           data.getPosts && data.getPosts.map(post=> (
-              <GridColumn key={post.id} style={{marginBottom: '20px'}}>
-                  <PostCard post={post}/>
+              <GridColumn key={post.id} width={10} style={{marginBottom: '20px'}}>
+                  <PostCard post={post} />
               </GridColumn>
           ))
       )}

@@ -1,52 +1,108 @@
-import React from 'react';
-import { Card, Icon, Label, Image, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom'
-import moment from 'moment';
+import React, { useState, useEffect, useContext } from 'react';
+import { useMutation, gql } from '@apollo/client';
 
-function PostCard({ post: { body, createdAt, id, username, likeCount, commentCount, likes}}){
-    function likePost(){
-        console.log('like post');
+
+import {
+  FormTextArea,
+  FormButton,
+  Form,
+} from 'semantic-ui-react';
+
+
+
+
+const CREATE_POST = gql`
+  mutation createPost( $body: String!) {
+    createPost(body: $body) {
+        id
+        body
+        createdAt
+        username
+        likeCount
+        commentCount
+        likes {
+          id
+          username
+          createdAt
+        }
+        comments {
+          id
+          username
+          createdAt
+          body
+        }
+      }
     }
-    function commentOnPost(){
-        console.log('comment on post');
+  `;
+
+
+
+
+const AddPost = () => {
+    const [createPost] = useMutation(CREATE_POST);
+    const [formData, setFormData] = useState({
+    body: '',
+    
+
+
+  });
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    
+    if (storedUsername){
+      setFormData({...formData, username: storedUsername});
     }
-    return (
-        <Card fluid>
-        <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/molly.png'
-          />
-          <Card.Header>{username}</Card.Header>
-          <Card.Meta as={Link} to={`/posts/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
-          <Card.Description>
-            {body}
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-        <Button as='div' labelPosition='right' onClick={likePost}>
-      <Button color='teal' basic>
-        <Icon name='heart' />
-        
-      </Button>
-      <Label  basic color='teal' pointing='left'>
-        {likeCount}
-      </Label>
-    </Button>
+  }, []);
 
-        <Button as='div' labelPosition='right' onClick={commentOnPost}>
-      <Button color='blue' basic>
-        <Icon name='comments' />
-        
-      </Button>
-      <Label  basic color='blue' pointing='left'>
-        {commentCount}
-      </Label>
-    </Button>
-        </Card.Content>
-      </Card>
-    )
-}
+  const handleChange = (_, { value }) => {
+    setFormData({ ...formData, body: value });
 
-export default PostCard;
+  };
+
+ 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+       
+    // const token = context.user.token;
+
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    try {
+        
+      await createPost({ variables: formData,
+                            context:{
+                                headers: {
+                                    Authorization: token? `Bearer ${token}` : '',
+                                },
+                            },
+                         });
+                         
+      console.log('Post created successfully');
+      setFormData({ body: '' });
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
+  };
+
+
+  return (
+    <div>
+      <Form onSubmit={handleSubmit}>
+          <FormTextArea
+          label='New Post'
+          value={formData.body}
+          onChange = {handleChange}
+        />
+
+
+        <FormButton type="submit">Post</FormButton>
+      </Form>
+      
+    </div>
+
+  );
+};
+
+export default AddPost;

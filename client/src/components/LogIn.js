@@ -3,6 +3,7 @@ import { FormField, Button, Form } from 'semantic-ui-react';
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
+
 const LOGIN = gql`
   mutation login( $username: String!, $password: String!) {
     login(username: $username, password: $password) {
@@ -19,6 +20,9 @@ const LOGIN = gql`
 `;
 
 const LogIn = () => {
+  // const { setToken } = useAuth()
+  // const [authToken, setAuthToken] = useState(null);
+
   const [login, {loading, error}] = useMutation(LOGIN);
   const [formData, setFormData] = useState({
     username: '',
@@ -41,7 +45,10 @@ const LogIn = () => {
       //send login mutation
      const { data } = await login({variables: {...formData}}); 
      const {user, username} = data.login;
-     console.log('successful login', user);
+     console.log('successful login', data.login);
+     
+     
+     localStorage.setItem('authToken', data.login.token)
      localStorage.setItem('username', username);
      setFormData({
   username: '',
@@ -56,6 +63,7 @@ navigate('/');
   };
 
   return (
+    
     <Form onSubmit={handleSubmit}>
       <FormField width={5}>
         <label>User Name</label>
