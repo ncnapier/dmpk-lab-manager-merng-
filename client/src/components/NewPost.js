@@ -89,8 +89,12 @@ const AddPost = () => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+        
+      <Form 
+      style={{marginTop: '50px'}}
+      onSubmit={handleSubmit}>
           <FormTextArea
+          
           label='New Post'
           value={formData.body}
           onChange = {handleChange}
