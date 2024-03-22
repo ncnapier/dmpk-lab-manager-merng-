@@ -15,8 +15,8 @@ function PostCard({ post: { body, createdAt, id, username, likeCount, commentCou
         <Card.Content>
           <Image
             floated='right'
-            size='small'
-            src='https://hips.hearstapps.com/esq.h-cdn.co/assets/17/07/980x490/landscape-1487345526-jar-jar-new.jpg?'
+            size='mini'
+            src='https://react.semantic-ui.com/images/avatar/large/molly.png'
           />
           <Card.Header>{username}</Card.Header>
           <Card.Meta as={Link} to={`/posts/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
