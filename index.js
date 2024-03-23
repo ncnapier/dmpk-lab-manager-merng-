@@ -20,25 +20,12 @@ const server = new ApolloServer({
     resolvers,
     context: ({ req }) => ({
     req
-    //   const authHeader = req.headers.authorization;
-    //   if (authHeader) {
-    //     const token = authHeader.split('Bearer ')[1];
-    //     if (token) {
-    //       try {
-    //         const user = jwt.verify(token, SECRET_KEY);
-    //         return { user };
-    //       } catch (err) {
-    //         throw new AuthenticationError('Invalid/Expired token');
-    //       }
-    //     }
-    //     throw new AuthenticationError('Authentication token must be provided');
-    //   }
-    //   return {};
+   
     }),
   });
   
 
-mongoose.connect(MONGODB, { useNewURLParser: true})
+mongoose.connect(MONGODB, { useNewURLParser: true, useUnifiedTopology: true})
     .then(() => {
         console.log('MongoDB Connected...');
         return server.listen({port: 8000})
