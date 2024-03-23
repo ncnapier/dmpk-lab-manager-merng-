@@ -81,6 +81,7 @@ const AddPost = () => {
                          
       console.log('Post created successfully');
       setFormData({ body: '' });
+      window.location.reload();
     } catch (error) {
       console.error('Error creating post:', error);
     }

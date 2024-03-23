@@ -10,7 +10,7 @@ import { AuthProvider } from '../src/context/AuthContext';
 
 
 const client = new ApolloClient({
-    uri: 'http://localhost:8000/',
+    uri: 'https://dmpk-lab-manager-merng.onrender.com/',
     cache: new InMemoryCache(),
 });
 

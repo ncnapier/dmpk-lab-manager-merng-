@@ -101,7 +101,7 @@ const AddRun = () => {
       setRunData(data.createRun);
       console.log('Run created successfully');
       setFormData({instrument: '', assay: '', trays: ''})
-      
+      window.location.reload();
     } catch (error) {
       console.error('Error creating run:', error);
       console.log({ ...formData, username });
