@@ -9,6 +9,7 @@ import gql from 'graphql-tag'
 import PostCard from '../components/PostCard';
 import AddPost from '../components/NewPost'
 import WeatherAPI from '../components/WeatherAPI'
+import LogoutButton from "../components/LogOut";
 
 
 function Home(){
@@ -119,8 +120,9 @@ fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=Wl
     </Grid>
     </GridRow>
      <AddPost />
+     
     </Grid>
-
+    <LogoutButton />
 
 
         </div>

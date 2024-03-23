@@ -54,7 +54,8 @@ const LogIn = () => {
   username: '',
   password: '',
 });
-navigate('/');
+navigate('/', {replace: true});
+window.location.reload();
     } catch (err) {
       alert(error)
       console.error('Login error:', err.message);
