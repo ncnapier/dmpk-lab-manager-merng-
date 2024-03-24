@@ -17,6 +17,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Instruments from './pages/Instruments';
+import Maintenance from './pages/Maintenance';
 
 
 
@@ -44,6 +45,10 @@ function App() {
           <Route
             path="/instruments"
             element={isAuthenticated() ? <Instruments /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/maintenance"
+            element={isAuthenticated() ? <Maintenance /> : <Navigate to="/login" />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

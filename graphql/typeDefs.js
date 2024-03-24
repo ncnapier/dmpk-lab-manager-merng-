@@ -11,6 +11,14 @@ module.exports = gql`
     likeCount: Int!
     commentCount: Int!
   }
+  type MaintReq {
+    id: ID!
+    instrument: String!
+    username: String!
+    comments: [Comment]!
+    createdAt: String!
+    body: String!
+  }
   type Run {
     id: ID!
     instrument: String!
@@ -54,11 +62,15 @@ module.exports = gql`
     getPost(postId: ID!): Post
     getRuns: [Run]
     getRun(runId: ID!): Run
+    getMaintReqs: [MaintReq]
+    getMaintReq(maintReqId: ID!): MaintReq
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
     createPost(body: String!): Post!
+    createMaintReq(body: String!, instrument: String!, username: String): MaintReq!
+    deleteMaintReq(maintReqId: ID!): String!
     deletePost(postId: ID!): String!
     createComment(postId: String!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!

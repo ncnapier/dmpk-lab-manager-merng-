@@ -20,6 +20,7 @@ const DeleteRun = ({ runId }) => {
         
         await deleteRunMutation({ variables: { runId } });
         console.log('Run deleted successfully');
+        window.location.reload();
       } catch (error) {
         
         

@@ -27,6 +27,13 @@ function MenuBar() {
             as={Link}
             to="/instruments"
           />
+          <MenuItem
+            name='maintenance'
+            active={activeItem === 'maintenance'}
+            onClick={handleItemClick}
+            as={Link}
+            to="/maintenance"
+          />
           <MenuMenu position='right'>
             <MenuItem
                 name='login'

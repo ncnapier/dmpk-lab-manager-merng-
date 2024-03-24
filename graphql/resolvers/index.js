@@ -2,6 +2,7 @@ const postsResolvers = require("./posts");
 const usersResolvers = require("./users");
 const commentsResolvers = require("./comments");
 const runsResolvers = require("./runs");
+const maintReqsResolvers = require("./maintReqs");
 
 
 
@@ -12,12 +13,14 @@ module.exports = {
   },
   Query: {
     ...postsResolvers.Query,
-    ...runsResolvers.Query
+    ...runsResolvers.Query,
+    ...maintReqsResolvers.Query
   },
   Mutation: {
     ...usersResolvers.Mutation,
     ...postsResolvers.Mutation,
     ...commentsResolvers.Mutation,
-    ...runsResolvers.Mutation
+    ...runsResolvers.Mutation,
+    ...maintReqsResolvers.Mutation
   },
 };
