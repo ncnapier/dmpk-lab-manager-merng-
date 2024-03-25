@@ -123,10 +123,38 @@ import DeleteMaintReq from './DeleteMaintReq';
 
 function MaintReqs({ maintReq: { createdAt, username, id, body, instrument}}){
     
+    
     function commentOnMaintReq(){
         console.log('comment on post');
     }
+
+    
+    function fixInstrument(instrument){
+        let instrumentName = ''
+            if(instrument === 'old4500'){
+                instrumentName = 'Old 4500'
+            } else if(instrument === 'new4500'){
+                instrumentName = 'New 4500'
+            }
+            else if(instrument === 'old4500lc'){
+                instrumentName = 'Old 4500 LC'
+            }else if(instrument === 'new4500lc'){
+                instrumentName = 'New 4500 LC'
+            }
+            else if(instrument === '5500lc'){
+                instrumentName = '5500 LC'
+            }else if(instrument === '6500lc'){
+                instrumentName = '6500 LC'
+            }else{
+                instrumentName = instrument
+            }
+          return instrumentName  
+    }
+
+    
     return (
+
+    
         <Card fluid>
         <Card.Content>
           <Image
@@ -134,7 +162,7 @@ function MaintReqs({ maintReq: { createdAt, username, id, body, instrument}}){
             size='mini'
             src='https://react.semantic-ui.com/images/avatar/large/molly.png'
           />
-          <Card.Header>{instrument}</Card.Header>
+          <Card.Header>{fixInstrument(instrument)}</Card.Header>
           <Card.Meta as={Link} to={`/maintReq/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
           <Card.Header>{username}:</Card.Header>
           <Card.Description>
