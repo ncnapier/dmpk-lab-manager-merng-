@@ -15,10 +15,10 @@ function Instruments(){
             <h2>Create New Run:</h2>
             
             <AddRun />
-            
-            <h2>Current Runs:</h2>
-            <Runs/>
-            {/* <DisplayRunsByInstrument /> */}
+            <div style={{borderTop: "1px solid teal", marginTop: "80px", paddingTop: "20px"}}>
+                <h2>Current Runs:</h2>
+                <Runs/>
+            </div>
         </div>
     )
 }

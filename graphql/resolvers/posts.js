@@ -57,9 +57,10 @@ module.exports = {
           return "Post deleted successfully";
         } else {
           throw new AuthenticationError("Action not allowed");
+          
         }
       } catch (err) {
-        throw new Error(err);
+        throw new AuthenticationError(err);
       }
     },
     async likePost(_, { postId }, context){

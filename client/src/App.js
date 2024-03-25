@@ -33,7 +33,7 @@ import Maintenance from './pages/Maintenance';
 function App() {
   return (
     <BrowserRouter>
-      <Container>
+      <Container style={{height:'100%'}}>
      
     
         <MenuBar />
@@ -54,7 +54,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           </Routes>
           
-          
+          {/* <h5 style={{display:'flex', marginBottom: '0px'}}><a style={{marginLeft: "50%",color: 'gray'}}href='https://nattydevs.com' target='_blank'>Natty Devs, 2024</a></h5> */}
       </Container>
     </BrowserRouter>
   );

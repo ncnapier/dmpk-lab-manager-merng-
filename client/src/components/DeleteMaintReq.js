@@ -6,25 +6,25 @@ import { useMutation, gql } from '@apollo/client';
 
 
 
-const DELETE_POST = gql`
-  mutation deletePost( $postId: ID! ) {
-    deletePost( postId: $postId )
+const DELETE_MAINTREQ = gql`
+  mutation deleteMaintReq( $maintReqId: ID! ) {
+    deleteMaintReq( maintReqId: $maintReqId )
   }
 `;
 const token = localStorage.getItem('authToken');
-const DeletePost = ({ postId }) => {
-    const [deletePostMutation] = useMutation(DELETE_POST);
+const DeleteMaintReq = ({ maintReqId }) => {
+    const [deleteMaintReqMutation] = useMutation(DELETE_MAINTREQ);
     
     const handleDelete = async () => {
       try {
         
-        await deletePostMutation({ variables: { postId }, context:{
+        await deleteMaintReqMutation({ variables: { maintReqId }, context:{
             headers: {
                 Authorization: token? `Bearer ${token}` : '',
             },
         },  });
         
-        console.log('Post deleted successfully');
+        console.log('Request deleted successfully');
         window.location.reload();
       } catch (error) {
         alert(error)
@@ -40,8 +40,8 @@ const DeletePost = ({ postId }) => {
         color: 'white',
         backgroundColor: 'red',
         borderColor: 'red'
-    }} onClick={handleDelete}>Delete Post</button>
+    }} onClick={handleDelete}>Delete Request</button>
     );
   };
  
-  export default DeletePost;
+  export default DeleteMaintReq;
