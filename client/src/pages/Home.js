@@ -1,10 +1,6 @@
 import React from "react";
-// import { useQuery } from "@apollo/react-hooks";
-
-// import { gql } from "@apollo/client";
 import { Grid, GridRow, GridColumn, Image } from "semantic-ui-react";
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery } from "@apollo/client";
-// import { FETCH_POSTS_QUERY } from "../util/graphql";
+import { useQuery } from "@apollo/client";
 import gql from 'graphql-tag'
 import PostCard from '../components/PostCard';
 import AddPost from '../components/NewPost'

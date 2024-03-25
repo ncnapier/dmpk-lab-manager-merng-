@@ -1,13 +1,9 @@
 import React from 'react'
-
-import AddRun from '../components/NewRun';
-import Runs from '../components/Runs';
-import AddRunForm from '../components/NewRun';
 import AddMaintReq from '../components/NewMaintReq'
 import MaintReqs from '../components/MaintReqs';
 import { GridColumn } from 'semantic-ui-react';
 import gql from 'graphql-tag';
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 
 
 
@@ -22,8 +18,6 @@ function Maintenance(){
       username
       createdAt
       instrument
-      
-     
       comments {
         id
         createdAt
