@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function LogOut() {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('color');
+    localStorage.removeItem('username');
 }
 
 

@@ -47,7 +47,7 @@ const LogIn = () => {
      const { data } = await login({variables: {...formData}}); 
      const {username, color} = data.login;
 
-     const defaultColor = 'ffffff';
+     const defaultColor = '999999';
      const userColor = color || defaultColor;
      
      console.log('successful login', data.login);

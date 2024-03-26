@@ -131,7 +131,8 @@ const Registration = () => {
         />
     </FormField>
     <FormField width={5}>
-        <label>Color</label>
+        <label>Profile Color</label>
+        <div style={{backgroundColor: formData.color, width: '25px', height: '25px'}}></div>
         <Wheel
           color={formData.color} // Pass current color to the color wheel
           onChange={handleColorChange} // Handle color change

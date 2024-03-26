@@ -4,7 +4,7 @@ import LogIn from '../components/LogIn'
 function Login(){
     return (
         <div>
-            <h1>Login Page</h1>
+            <h1>DMPK Lab Login</h1>
             <LogIn/>
         </div>
         

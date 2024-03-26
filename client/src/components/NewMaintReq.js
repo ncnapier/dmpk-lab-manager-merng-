@@ -117,14 +117,14 @@ const CREATE_MAINTREQ = gql`
           fluid
           label='Instrument'
           options={options}
-          placeholder='Select Assay'
+          placeholder='Select Instrument'
           onChange={handleChange}
           value={formData.instrument}
         />
          <FormField
       control={TextArea}
       label='Maintenance Request:'
-      placeholder='Opinion'
+      placeholder='Request'
       value={formData.body}
       onChange = {handleBodyChange}
     />
