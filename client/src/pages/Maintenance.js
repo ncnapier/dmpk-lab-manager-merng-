@@ -18,11 +18,13 @@ function Maintenance(){
       username
       createdAt
       instrument
+      color
       comments {
         id
         createdAt
         body
       }
+      
         }
     }
   `;
@@ -43,7 +45,7 @@ function Maintenance(){
             ): (
             data.getMaintReqs && data.getMaintReqs.map(maintReq=> (
                 <GridColumn key={maintReq.id} width={10} style={{marginBottom: '20px', alignSelf: 'center'}}>
-            <MaintReqs maintReq={maintReq}/>
+            <MaintReqs maintReq={maintReq} color={maintReq.color} />
                 </GridColumn>
             ))
             )}

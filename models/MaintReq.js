@@ -5,6 +5,7 @@ const maintReqSchema = new Schema({
     username: String,
     createdAt: String,
     instrument: String,
+    color: String,
     comments: [
         {
             body: String,
@@ -15,7 +16,8 @@ const maintReqSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
-    }
+    },
+    
 
 
 });

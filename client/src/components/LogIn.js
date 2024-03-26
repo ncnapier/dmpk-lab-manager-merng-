@@ -12,6 +12,7 @@ const LOGIN = gql`
       email
       username
       token
+      color
       
      
       
@@ -44,12 +45,17 @@ const LogIn = () => {
     try {
       //send login mutation
      const { data } = await login({variables: {...formData}}); 
-     const {user, username} = data.login;
+     const {username, color} = data.login;
+
+     const defaultColor = 'ffffff';
+     const userColor = color || defaultColor;
+     
      console.log('successful login', data.login);
      
      
      localStorage.setItem('authToken', data.login.token)
      localStorage.setItem('username', username);
+     localStorage.setItem('color', userColor);
      setFormData({
   username: '',
   password: '',

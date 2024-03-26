@@ -20,8 +20,8 @@ import {
 
 
 const CREATE_MAINTREQ = gql`
-  mutation createMaintReq( $body: String!, $username: String!, $instrument: String!) {
-    createMaintReq(body: $body, username: $username, instrument: $instrument) {
+  mutation createMaintReq( $body: String!, $username: String!, $instrument: String!, $color: String!) {
+    createMaintReq(body: $body, username: $username, instrument: $instrument, color: $color) {
         id
         instrument
         username
@@ -33,6 +33,7 @@ const CREATE_MAINTREQ = gql`
           }
         createdAt
         body
+        color
       }
     }
   `;
@@ -53,17 +54,21 @@ const CREATE_MAINTREQ = gql`
     const [formData, setFormData] = useState({
         instrument: '',
         body: '',
+        // color:'',
     });
 
     const [maintReqData, setMaintReqData] = useState(null);
     const [username, setUsername] = useState('');
+    
 
     useEffect(() => {
         const storedUsername = localStorage.getItem('username');
+        const storedColor = localStorage.getItem('color');
         
-        if (storedUsername){
+        
         setUsername(storedUsername);
-        }
+        setFormData(prevData => ({...prevData, color: storedColor }));
+        
     }, []);
 
     const handleChange = (_, { value }) => {
@@ -74,11 +79,16 @@ const CREATE_MAINTREQ = gql`
         setFormData({...formData, body: value});
     };
 
+   
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+       
+      
         const token = localStorage.getItem('authToken');
         try{
-           const variables = { ...formData, username };
+            
+           const variables = { ...formData, username};
             const { data } = await createMaintReq({ variables, 
                 context:{
                     headers: {

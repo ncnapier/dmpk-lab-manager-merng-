@@ -18,6 +18,7 @@ module.exports = gql`
     comments: [Comment]!
     createdAt: String!
     body: String!
+    color: String!
   }
   type Run {
     id: ID!
@@ -48,6 +49,7 @@ module.exports = gql`
     token: String!
     username: String!
     createdAt: String!
+    color: String!
     
   }
   input RegisterInput {
@@ -55,6 +57,7 @@ module.exports = gql`
     email: String!
     password: String!
     confirmPassword: String!
+    color: String!
     
   }
   type Query {
@@ -69,7 +72,7 @@ module.exports = gql`
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
     createPost(body: String!): Post!
-    createMaintReq(body: String!, instrument: String!, username: String): MaintReq!
+    createMaintReq(body: String!, instrument: String!, username: String, color: String!): MaintReq!
     deleteMaintReq(maintReqId: ID!): String!
     deletePost(postId: ID!): String!
     createComment(postId: String!, body: String!): Post!

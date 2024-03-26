@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   Mutation: {
-    async createMaintReq(_, { body, instrument }, context) {
+    async createMaintReq(_, { body, instrument, color }, context) {
       const user = checkAuth(context);
       console.log(context)
       if (body.trim() === '') {
@@ -42,6 +42,7 @@ module.exports = {
         user: user.id,
         username: user.username,
         createdAt: new Date().toISOString(),
+        color,
       });
 
       const maintReq = await newMaintReq.save();

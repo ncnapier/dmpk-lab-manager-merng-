@@ -2,6 +2,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { UserInputError } = require("apollo-server");
 
+const DEFAULT_COLOR = 'ffffff';
+
 const {
   validateRegisterInput,
   validateLoginInput,
@@ -26,6 +28,7 @@ module.exports = {
     async login(_, { username, password }) {
       const { errors, valid } = validateLoginInput(username, password);
 
+
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
@@ -43,24 +46,28 @@ module.exports = {
         throw new UserInputError("Wrong credentials", { errors });
       }
 
+
+      const color = user.color || DEFAULT_COLOR;
       const token = generateToken(user);
 
       return {
         ...user._doc,
         id: user._id,
-        token
+        token,
+        color
       };
     },
     async register(
       _,
-      { registerInput: { username, email, password, confirmPassword } }
+      { registerInput: { username, email, password, confirmPassword, color } }
     ) {
       // Validate user data
       const { valid, errors } = validateRegisterInput(
         username,
         email,
         password,
-        confirmPassword
+        confirmPassword,
+        color
       );
       if (!valid) {
         throw new UserInputError("Errors", { errors });
@@ -82,6 +89,7 @@ module.exports = {
         username,
         password,
         createdAt: new Date().toISOString(),
+        color,
       });
 
       const res = await newUser.save();
