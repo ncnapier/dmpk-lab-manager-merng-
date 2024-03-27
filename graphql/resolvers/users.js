@@ -99,7 +99,8 @@ module.exports = {
       return {
         ...res._doc,
         id: res._id,
-        token
+        token, 
+        color
       };
     }
   }

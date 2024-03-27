@@ -18,7 +18,9 @@ function Home(){
       username
       createdAt
       commentCount
+      color
       likeCount
+      
       likes {
         username
         id
@@ -104,10 +106,10 @@ fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=Wl
       {loading ? (
           <h1>Loading Posts...</h1>
       ) : (
-        
+       
           data.getPosts && data.getPosts.map(post=> (
               <GridColumn key={post.id} width={10} style={{marginBottom: '20px', alignSelf: 'center'}}>
-                  <PostCard post={post} />
+                  <PostCard post={post} color={post.color} />
               </GridColumn>
           ))
           

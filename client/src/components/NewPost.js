@@ -12,14 +12,15 @@ import {
 
 
 const CREATE_POST = gql`
-  mutation createPost( $body: String!) {
-    createPost(body: $body) {
+  mutation createPost( $body: String!, $color: String!, $username: String!) {
+    createPost(body: $body, color: $color, username: $username) {
         id
         body
         createdAt
         username
         likeCount
         commentCount
+        color
         likes {
           id
           username
@@ -42,45 +43,54 @@ const AddPost = () => {
     const [createPost] = useMutation(CREATE_POST);
     const [formData, setFormData] = useState({
     body: '',
+    color: '',
+    
     
 
 
   });
+const [setPostData] =useState(null);
+const [username, setUsername] = useState('');
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
+    const storedColor = localStorage.getItem('color');
+   
+    setUsername(storedUsername);
+    setFormData(prevData => ({...prevData, color: storedColor }));
     
-    if (storedUsername){
-      setFormData({...formData, username: storedUsername});
-    }
+    
+    
   }, []);
 
   const handleChange = (_, { value }) => {
-    setFormData({ ...formData, body: value });
-
+    setFormData({...formData,  body: value });
+    
   };
 
  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-       
+
+    
     // const token = context.user.token;
 
     const token = localStorage.getItem('authToken');
-    console.log(token)
+    
+    
     try {
-        
-      await createPost({ variables: formData,
+        const variables = { ...formData, username};
+      const { data } = await createPost({ variables, 
                             context:{
                                 headers: {
                                     Authorization: token? `Bearer ${token}` : '',
                                 },
                             },
                          });
-                         
+                                          
       console.log('Post created successfully');
-      setFormData({ body: '' });
+      setFormData({ body: '', color: '' });
       window.location.reload();
     } catch (error) {
       console.error('Error creating post:', error);

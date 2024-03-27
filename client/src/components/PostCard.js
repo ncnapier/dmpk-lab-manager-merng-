@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import moment from 'moment';
 import DeletePost from './DeletePost';
 
-function PostCard({ post: { body, createdAt, id, username, likeCount, commentCount, likes}}){
-    function likePost(){
+function PostCard({ post: { body, createdAt, id, username, likeCount, commentCount, likes, color}}){
+    console.log(color)
+    console.log(createdAt)
+  
+  function likePost(){
         console.log('like post');
     }
     function commentOnPost(){
@@ -14,11 +17,7 @@ function PostCard({ post: { body, createdAt, id, username, likeCount, commentCou
     return (
         <Card fluid>
         <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/molly.png'
-          />
+          <div  style={{ width: '50px', height: '50px', backgroundColor: color, float: 'right' }}></div>
           <Card.Header>{username}</Card.Header>
           <Card.Meta as={Link} to={`/posts/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
           <Card.Description>

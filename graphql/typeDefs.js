@@ -10,6 +10,7 @@ module.exports = gql`
     likes: [Like]!
     likeCount: Int!
     commentCount: Int!
+    color: String!
   }
   type MaintReq {
     id: ID!
@@ -71,7 +72,7 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
-    createPost(body: String!): Post!
+    createPost(body: String!, color: String!, username: String!): Post!
     createMaintReq(body: String!, instrument: String!, username: String, color: String!): MaintReq!
     deleteMaintReq(maintReqId: ID!): String!
     deletePost(postId: ID!): String!
