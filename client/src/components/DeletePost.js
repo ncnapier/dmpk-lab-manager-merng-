@@ -37,6 +37,7 @@ const DeletePost = ({ postId }) => {
     return (
       <button 
        style={{
+        float: 'right',
         color: 'white',
         backgroundColor: 'red',
         borderColor: 'red'

@@ -31,6 +31,7 @@ const DeleteRun = ({ runId }) => {
     return (
       <button 
        style={{
+        float: 'right',
         color: 'white',
         backgroundColor: 'red',
         borderColor: 'red'

@@ -37,11 +37,13 @@ function DisplayRuns5500() {
             return fiftyFive.map(({ id, instrument, username, trays, assay, createdAt, comments }) => (
                 <div key={id} style={{
                     color: 'white',
-                    backgroundColor: '#008080',
-                    borderColor: '#008080',
-                    width: 'fit-content',
+                    backgroundColor: '#999999',
+                    borderRadius: '1%',
+                    width: '50%',
                     padding: '1rem',
-                    marginBottom: '2rem'
+                    marginBottom: '2rem',
+                    marginLeft: 'auto',
+                    marginRight: 'auto'
                    
                 }}>
                     

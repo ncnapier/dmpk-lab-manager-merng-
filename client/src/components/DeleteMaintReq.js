@@ -37,6 +37,7 @@ const DeleteMaintReq = ({ maintReqId }) => {
     return (
       <button 
        style={{
+        float: 'right',
         color: 'white',
         backgroundColor: 'red',
         borderColor: 'red'
