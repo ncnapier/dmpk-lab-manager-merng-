@@ -100,8 +100,8 @@ fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=Wl
             
         </GridRow>
         <h2>Recent Posts</h2>
-        <GridRow style={{ maxHeight: '400px', overflowY: 'auto', boxShadow: '10px gray', border: '1px gray solid', overflowX: 'hidden'}}>
-    <Grid style={{display: 'flex', justifyContent: 'center'}}>
+        <GridRow style={{ minHeight: '300px', maxHeight: '400px', overflowY: 'auto', boxShadow: '10px gray', border: '1px gray solid', overflowX: 'hidden'}}>
+    <Grid style={{display: 'flex', justifyContent: 'center', width:'100%'}}>
         
       {loading ? (
           <h1>Loading Posts...</h1>
