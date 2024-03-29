@@ -1,90 +1,11 @@
-// import React, { useState, Component } from 'react';
-// import  {RadialMenu}  from 'react-radial-menu'
-// import { useQuery } from '@apollo/client';
-// import gql from 'graphql-tag'
-// import SixtyFiveHundredRuns from './6500Runs'
-// import FiftyFiveHundredRuns from './5500Runs'
-// import NewFourtyFiveHundredRuns from './New4500Runs'
-// import OldFourtyFiveHundredRuns from './Old4500Runs'
-// import { Form } from 'semantic-ui-react';
-
-// // const ComponentA = () => <SixtyFiveHundredRuns />
-
-
-// //     const [selectedComponent, setSeletedComponent] = useState(null);
-
-// //     const handleSelectComponent = (component) => {
-// //         setSeletedComponent(component);
-// //     };
-
-
-
-
-// class Runs extends Component {
-    
-//     state = {}
-  
-//     handleChange = (e, { value }) => this.setState({ value })
-
-
-//     render(){
-//     const {value} = this.state;
-   
-//     console.log(value)
-//     return (
-        
-//        <div>
-       
-//         <Form>
-//         <Form.Group inline>
-//           <label>Instruments</label>
-//           <Form.Radio
-//             label='6500'
-//             value={<SixtyFiveHundredRuns />}
-//             checked={ value === <SixtyFiveHundredRuns />}
-            
-//             onChange={this.handleChange}
-//           />
-//           <Form.Radio
-//             label='5500'
-//             value= {<FiftyFiveHundredRuns />}
-//             checked={value === <FiftyFiveHundredRuns />}
-//             onChange={this.handleChange}
-//           />
-//           <Form.Radio
-//             label='New 4500'
-//             value= {<NewFourtyFiveHundredRuns />}
-//             checked={value === <NewFourtyFiveHundredRuns />}
-//             onChange={this.handleChange}
-//           />
-//           <Form.Radio
-//             label='Old 4500'
-//             value= {<OldFourtyFiveHundredRuns />}
-//             checked={value === <OldFourtyFiveHundredRuns />}
-//             onChange={this.handleChange}
-//           />
-         
-         
-//         </Form.Group>
-//         </Form>
-//         <div>
-//             {value}
-//         </div>
-//        </div>
-//   )
-// }
-// }
-
-// export default Runs
-
 import React, { useState } from 'react';
-import SixtyFiveHundredRuns from './6500Runs';
-import FiftyFiveHundredRuns from './5500Runs';
-import NewFourtyFiveHundredRuns from './New4500Runs';
-import OldFourtyFiveHundredRuns from './Old4500Runs';
+import { Card, Icon, Image, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
+import moment from 'moment';
 import { Form } from 'semantic-ui-react';
 import { useQuery } from '@apollo/client';
 import {  gql } from '@apollo/client';
+import DeleteRun from './DeleteRun';
 
 const GET_RUNS = gql`
   query {
@@ -101,6 +22,29 @@ const GET_RUNS = gql`
 `;
 
 
+function fixInstrument(selectedInstrument){
+  let instrumentName = ''
+      if(selectedInstrument === 'old4500'){
+          instrumentName = 'Old 4500'
+      } else if(selectedInstrument === 'new4500'){
+          instrumentName = 'New 4500'
+      }
+      else if(selectedInstrument === 'old4500lc'){
+          instrumentName = 'Old 4500 LC'
+      }else if(selectedInstrument === 'new4500lc'){
+          instrumentName = 'New 4500 LC'
+      }
+      else if(selectedInstrument === '5500lc'){
+          instrumentName = '5500 LC'
+      }else if(selectedInstrument === '6500lc'){
+          instrumentName = '6500 LC'
+      }else{
+          instrumentName = selectedInstrument
+      }
+    return instrumentName  
+}
+
+
 function Runs() {
   const [selectedInstrument, setSelectedInstrument] = useState('');
   const { loading, error, data, refetch } = useQuery(GET_RUNS);
@@ -114,6 +58,9 @@ function Runs() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
+
+
+  
 
 
   return (
@@ -149,13 +96,73 @@ function Runs() {
         </Form.Group>
       </Form>
       {/* Render the selected instrument component */}
-      {selectedInstrument === '6500' && <SixtyFiveHundredRuns />}
-      {selectedInstrument === '5500' && <FiftyFiveHundredRuns />}
-      {selectedInstrument === 'new4500' && <NewFourtyFiveHundredRuns />}
-      {selectedInstrument === 'old4500' && <OldFourtyFiveHundredRuns />}
+      {selectedInstrument === '6500' && <InstrumentRuns />}
+      {selectedInstrument === '5500' && <InstrumentRuns />}
+      {selectedInstrument === 'new4500' && <InstrumentRuns />}
+      {selectedInstrument === 'old4500' && <InstrumentRuns />}
       {/* Add similar conditional rendering for other instruments */}
     </div>
+
+
+
   );
+
+  
+
+  function DisplayRuns() {
+    const { loading, error, data } = useQuery(GET_RUNS);
+    
+    function commentOnRun(){
+      console.log('comment on post');
+  }
+
+
+    let SelectRuns = []
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error : {error.message}</p>;
+    for (let i = 0; i < data.getRuns.length; i++) {
+        if (data.getRuns[i].instrument === selectedInstrument) {
+           SelectRuns.push(data.getRuns[i])
+            
+        }
+    }
+            return SelectRuns.map(({ id, instrument, username, trays, assay, createdAt, comments }) => (
+                <Card fluid key={id}>
+                
+                <Card.Content>
+                    <Card.Header>Assay Type: {assay}</Card.Header>
+                    <Card.Header>User:  {username}</Card.Header>
+                    <Card.Header>Trays: {trays.split(" ")[0]}  {trays.split(" ")[1]} {trays.split(" ")[2]}</Card.Header>
+                    <Card.Header>Run Created: {new Date(createdAt).toLocaleString()}</Card.Header>
+                    <Card.Meta as={Link} to={`/run/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
+                    
+                    </Card.Content>
+                    <Card.Content extra>
+                    <Button as='div' labelPosition='right' onClick={commentOnRun}>
+      <Button color='blue' basic>
+        <Icon name='comments' />
+        
+      </Button>
+      
+    </Button>
+                    <DeleteRun runId = {String(id)}/>
+                </Card.Content>
+                    
+                </Card>
+            ));
+        }
+
+        
+
+function InstrumentRuns(){
+
+
+    return(
+        <><div>
+            <h3>{fixInstrument(selectedInstrument)} Runs:</h3><br />
+        </div><DisplayRuns /></>
+    )
+}
 }
 
 export default Runs;
