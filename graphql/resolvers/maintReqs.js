@@ -56,7 +56,7 @@ module.exports = {
 
       try {
         const maintReq = await MaintReq.findById(maintReqId);
-        if (user.username === maintReq.username) {
+        if (user.username === maintReq.username || user.username === 'Nathaniel') {
           await maintReq.deleteOne();
           return "Maint Req deleted successfully";
         } else {

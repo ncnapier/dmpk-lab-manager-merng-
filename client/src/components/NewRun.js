@@ -94,10 +94,16 @@ const AddRun = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem('authToken');
+
     try {
       const variables = { ...formData, username };
-      console.log('variable', variables)
-      const { data } = await createRun({ variables });
+      const { data } = await createRun({ variables, context:{
+        headers: {
+            Authorization: token? `Bearer ${token}` : '',
+        },
+    }, });
       setRunData(data.createRun);
       console.log('Run created successfully');
       setFormData({instrument: '', assay: '', trays: ''})

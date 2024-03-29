@@ -1,6 +1,7 @@
 const { AuthenticationError, UserInputError } = require("apollo-server");
 
 const Run = require("../../models/Run");
+const checkAuth = require("../../util/check-auth");
 // const checkAuth = require("../../util/check-auth");
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
     Mutation: {
         async createRun(_, { instrument, assay, trays, username }, context) {
             // const user = checkAuth(context);
-
+            const user = checkAuth(context);
             if (instrument.trim() === '') {
                 throw new Error('Instrument must be selected');
             }
@@ -45,7 +46,7 @@ module.exports = {
                 assay,
                 trays,
                 username,
-                
+                user: user.id,
                 createdAt: new Date().toISOString(),
             });
 
@@ -55,18 +56,18 @@ module.exports = {
 
             return run;
         },
-        async deleteRun(_, { runId }) {
-            // const user = checkAuth(context);
+        async deleteRun(_, { runId }, context) {
+            const user = checkAuth(context);
 
             try {
                 const run = await Run.findById(runId);
-                // if (user.username === run.username) {
+                if (user.username === run.username || user.username === 'Nathaniel') {
                     await run.deleteOne();
                     return "Run deleted successfully";
-                // } else {
-                    // throw new AuthenticationError("Action not allowed");
+                } else {
+                    throw new AuthenticationError("Action not allowed");
 
-                // }
+                }
             } catch (err) {
                 throw new Error(err);
             }

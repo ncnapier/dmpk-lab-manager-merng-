@@ -8,14 +8,17 @@ const runSchema = new Schema({
     assay: String,
     trays: String,
     createdAt: String,
-    // comments: [
-    //     {
-    //         body: String,
-    //         username: String,
-    //         createdAt: String
-    //     }
-    // ]
-    
+    comments: [
+        {
+            body: String,
+            username: String,
+            createdAt: String
+        }
+    ],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }
 
 
 });

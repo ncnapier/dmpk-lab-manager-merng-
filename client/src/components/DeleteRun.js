@@ -11,14 +11,18 @@ const DELETE_RUN = gql`
     deleteRun( runId: $runId )
   }
 `;
-
+const token = localStorage.getItem('authToken');
 const DeleteRun = ({ runId }) => {
     const [deleteRunMutation] = useMutation(DELETE_RUN);
   
     const handleDelete = async () => {
       try {
         
-        await deleteRunMutation({ variables: { runId } });
+        await deleteRunMutation({ variables: { runId }, context:{
+          headers: {
+              Authorization: token? `Bearer ${token}` : '',
+          },
+      }, });
         console.log('Run deleted successfully');
         window.location.reload();
       } catch (error) {
