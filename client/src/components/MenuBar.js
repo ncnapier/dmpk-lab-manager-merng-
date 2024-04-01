@@ -10,7 +10,7 @@ function MenuBar() {
   const [activeItem, setActiveItem] = useState(path);
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
-
+  const logColor = localStorage.getItem('color') || '000000';
     return (
         <Menu pointing secondary size='massive' color='teal'>
           <MenuItem
@@ -35,6 +35,15 @@ function MenuBar() {
             to="/maintenance"
           />
           <MenuMenu position='right'>
+            <div style={{
+              borderRadius: '50%',
+              backgroundColor: logColor,
+              alignSelf: 'center',
+              width: '20px',
+              height: '20px',
+            }}>
+
+            </div>
             <MenuItem
                 name='login'
                 active={activeItem === 'login'}
