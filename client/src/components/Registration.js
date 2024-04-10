@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import { FormField, Button, Form, Checkbox} from 'semantic-ui-react';
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-
-import { Slider, Sketch, Material, Colorful, Compact, Circle, Wheel, Block, Github, Chrome } from '@uiw/react-color';
-import { Alpha, Hue, ShadeSlider, Saturation, Interactive, hsvaToHslaString } from '@uiw/react-color';
-import { EditableInput, EditableInputRGBA, EditableInputHSLA } from '@uiw/react-color';
+import { Wheel } from '@uiw/react-color';
 
 const REGISTER =gql`
 mutation register($registerInput: RegisterInput) {
@@ -23,20 +20,6 @@ mutation register($registerInput: RegisterInput) {
   }
 }
 `;
-
-// function Demo() {
-//   const [hex, setHex] = useState("#fff");
-//   console.log(hex)
-//   return (
-//     <Wheel
-//       style={{ marginLeft: 20 }}
-//       color={hex}
-//       onChange={(color) => {
-//         setHex(color.hex);
-//       }}
-//     />
-//   );
-// }
 
 const Registration = () => {
   const [register, {loading, error}] = useMutation(REGISTER)
@@ -67,7 +50,6 @@ const Registration = () => {
   };
 
     const handleSubmit = async(e) => {
-      
       e.preventDefault();
       try {
         
@@ -134,20 +116,11 @@ const Registration = () => {
         <label>Profile Color</label>
         <div style={{backgroundColor: formData.color, width: '25px', height: '25px'}}></div>
         <Wheel
-          color={formData.color} // Pass current color to the color wheel
-          onChange={handleColorChange} // Handle color change
+          color={formData.color} 
+          onChange={handleColorChange} 
         />
       </FormField>
      
-      {/* <Form
-      
-        name='color'
-        value={formData.color}
-        onChange={handleChange}
-        
-      > { Demo() }
-      </Form> */}
-    
     <Button type='submit'>Submit</Button>
     <Button href='./login'
       style={{

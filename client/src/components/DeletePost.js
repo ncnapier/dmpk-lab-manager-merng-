@@ -2,10 +2,6 @@ import React from 'react';
 import { useMutation, gql } from '@apollo/client';
 
 
-
-
-
-
 const DELETE_POST = gql`
   mutation deletePost( $postId: ID! ) {
     deletePost( postId: $postId )

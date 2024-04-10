@@ -6,15 +6,6 @@ const resolvers = require('./graphql/resolvers');
 const { MONGODB, SECRET_KEY } = require('./config');
 const jwt = require('jsonwebtoken');
 
-
-
-// const  checkAuth  = require('./util/check-auth');
-
-
-
-
-
-
 const server = new ApolloServer({
     typeDefs,
     resolvers,

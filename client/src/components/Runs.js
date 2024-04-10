@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Icon, Image, Button } from 'semantic-ui-react';
+import { Card, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
 import moment from 'moment';
 import { Form } from 'semantic-ui-react';
@@ -20,7 +20,6 @@ const GET_RUNS = gql`
     }
   }
 `;
-
 
 function fixInstrument(selectedInstrument){
   let instrumentName = ''
@@ -44,7 +43,6 @@ function fixInstrument(selectedInstrument){
     return instrumentName  
 }
 
-
 function Runs() {
   const [selectedInstrument, setSelectedInstrument] = useState('');
   const { loading, error, data, refetch } = useQuery(GET_RUNS);
@@ -58,10 +56,6 @@ function Runs() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-
-
-  
-
 
   return (
     <div>
@@ -92,22 +86,14 @@ function Runs() {
             checked={selectedInstrument === '6500'}
             onChange={handleChange}
           />
-          {/* Add similar radio buttons for other instruments */}
         </Form.Group>
       </Form>
-      {/* Render the selected instrument component */}
       {selectedInstrument === '6500' && <InstrumentRuns />}
       {selectedInstrument === '5500' && <InstrumentRuns />}
       {selectedInstrument === 'new4500' && <InstrumentRuns />}
       {selectedInstrument === 'old4500' && <InstrumentRuns />}
-      {/* Add similar conditional rendering for other instruments */}
     </div>
-
-
-
   );
-
-  
 
   function DisplayRuns() {
     const { loading, error, data } = useQuery(GET_RUNS);
@@ -115,7 +101,6 @@ function Runs() {
     function commentOnRun(){
       console.log('comment on post');
   }
-
 
     let SelectRuns = []
     if (loading) return <p>Loading...</p>;
@@ -152,10 +137,7 @@ function Runs() {
             ));
         }
 
-        
-
 function InstrumentRuns(){
-
 
     return(
         <><div>

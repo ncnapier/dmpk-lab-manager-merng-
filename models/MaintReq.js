@@ -17,9 +17,6 @@ const maintReqSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    
-
-
 });
 
 module.exports = model('MaintReq', maintReqSchema);

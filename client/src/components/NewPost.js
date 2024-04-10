@@ -1,15 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useMutation, gql } from '@apollo/client';
-
-
 import {
   FormTextArea,
   FormButton,
   Form,
 } from 'semantic-ui-react';
-
-
-
 
 const CREATE_POST = gql`
   mutation createPost( $body: String!, $color: String!, $username: String!) {
@@ -36,18 +31,11 @@ const CREATE_POST = gql`
     }
   `;
 
-
-
-
 const AddPost = () => {
     const [createPost] = useMutation(CREATE_POST);
     const [formData, setFormData] = useState({
     body: '',
     color: '',
-    
-    
-
-
   });
 const [setPostData] =useState(null);
 const [username, setUsername] = useState('');
@@ -68,16 +56,10 @@ const [username, setUsername] = useState('');
     
   };
 
- 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
-    // const token = context.user.token;
-
     const token = localStorage.getItem('authToken');
-    
     
     try {
         const variables = { ...formData, username};
@@ -97,7 +79,6 @@ const [username, setUsername] = useState('');
     }
   };
 
-
   return (
     <div>
         
@@ -110,13 +91,9 @@ const [username, setUsername] = useState('');
           value={formData.body}
           onChange = {handleChange}
         />
-
-
         <FormButton type="submit">Post</FormButton>
       </Form>
-      
     </div>
-
   );
 };
 

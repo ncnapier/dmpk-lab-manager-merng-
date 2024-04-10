@@ -15,7 +15,6 @@ function MaintReqs({ maintReq: { createdAt, username, id, body, instrument, colo
         console.log('comment on post');
     }
 
-    
     function fixInstrument(instrument){
         let instrumentName = ''
             if(instrument === 'old4500'){
@@ -38,15 +37,10 @@ function MaintReqs({ maintReq: { createdAt, username, id, body, instrument, colo
           return instrumentName  
     }
 
-    
     return (
-
-    
         <Card fluid>
             
         <Card.Content>
-            
-        
            <div floated= 'right' style={{ width: '50px', height: '50px', backgroundColor: color, float: 'right' }}></div>
           <Card.Header>{fixInstrument(instrument)}</Card.Header>
           <Card.Meta as={Link} to={`/maintReq/${id}`}>{moment(createdAt).fromNow(true)}</Card.Meta>
@@ -55,10 +49,8 @@ function MaintReqs({ maintReq: { createdAt, username, id, body, instrument, colo
             {body}
           </Card.Description>
         </Card.Content>
-        <Card.Content extra>
         
-      
-
+        <Card.Content extra>
         <Button as='div' labelPosition='right' onClick={commentOnMaintReq}>
       <Button color='blue' basic>
         <Icon name='comments' />

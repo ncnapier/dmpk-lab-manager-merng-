@@ -22,8 +22,6 @@ const postSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }
-
-
 });
 
 module.exports = model('Post', postSchema);

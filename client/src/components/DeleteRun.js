@@ -2,10 +2,6 @@ import React from 'react';
 import { useMutation, gql } from '@apollo/client';
 
 
-
-
-
-
 const DELETE_RUN = gql`
   mutation deleteRun( $runId: ID! ) {
     deleteRun( runId: $runId )

@@ -13,17 +13,11 @@ const LOGIN = gql`
       username
       token
       color
-      
-     
-      
     }
   }
 `;
 
 const LogIn = () => {
-  // const { setToken } = useAuth()
-  // const [authToken, setAuthToken] = useState(null);
-
   const [login, {loading, error}] = useMutation(LOGIN);
   const [formData, setFormData] = useState({
     username: '',

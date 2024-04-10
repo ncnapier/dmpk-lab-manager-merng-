@@ -5,11 +5,7 @@ import { GridColumn } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { useQuery } from "@apollo/client";
 
-
-
-
 function Maintenance(){
-
     const GET_MAINTREQS = gql`
     query {
         getMaintReqs {

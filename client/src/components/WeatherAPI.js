@@ -3,7 +3,7 @@
  function WeatherAPI(){
  //accuweather API
  fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=WlJdqhjA4jTuM6FQA5uH1Rr7GoyHhKYY&language=en-us&details=true")
- .then(res => res.json()) // parse response as JSON
+ .then(res => res.json()) 
  .then(data => {
      console.log(data)
    console.log(data[0].ApparentTemperature.Metric.Value)
@@ -41,7 +41,6 @@
  .catch(err => {
      console.log(`error ${err}`)
  });
-
 
  return (
  <section id="weather" style={{width: '50%'}} >

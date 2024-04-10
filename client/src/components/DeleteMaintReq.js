@@ -2,10 +2,6 @@ import React from 'react';
 import { useMutation, gql } from '@apollo/client';
 
 
-
-
-
-
 const DELETE_MAINTREQ = gql`
   mutation deleteMaintReq( $maintReqId: ID! ) {
     deleteMaintReq( maintReqId: $maintReqId )

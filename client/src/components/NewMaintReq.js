@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 
 
 import {
-    FormTextArea,
     FormSelect,
-    FormRadio,
-    FormInput,
-    FormGroup,
-    FormCheckbox,
     FormButton,
     FormField,
     Form,
-    Container,
     TextArea
 } from 'semantic-ui-react';
-
-
-
 
 const CREATE_MAINTREQ = gql`
   mutation createMaintReq( $body: String!, $username: String!, $instrument: String!, $color: String!) {
@@ -54,7 +45,6 @@ const CREATE_MAINTREQ = gql`
     const [formData, setFormData] = useState({
         instrument: '',
         body: '',
-        // color:'',
     });
 
     const [maintReqData, setMaintReqData] = useState(null);
@@ -132,9 +122,6 @@ const CREATE_MAINTREQ = gql`
             </Form>
         </div>
     )
-
-
-
 };
 
 export default AddMaintReq;

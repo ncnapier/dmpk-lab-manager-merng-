@@ -82,9 +82,6 @@ fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=Wl
     console.log(`error ${err}`)
 });
 
-
-
-
     return (
         <div >
             <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -94,10 +91,7 @@ fetch("https://dataservice.accuweather.com/currentconditions/v1/335668?apikey=Wl
     <div id="root"></div>
 
             <Grid columns={1} >
-        <GridRow className="page-title">
-           
-            
-            
+        <GridRow className="page-title"> 
         </GridRow>
         <h2>Recent Posts</h2>
         <GridRow style={{ minHeight: '300px', maxHeight: '400px', overflowY: 'auto', boxShadow: '10px gray', border: '1px gray solid', overflowX: 'hidden'}}>

@@ -1,10 +1,6 @@
 import React from 'react'
-
 import AddRun from '../components/NewRun';
 import Runs from '../components/Runs';
-import AddRunForm from '../components/NewRun';
-
-
 
 
 function Instruments(){

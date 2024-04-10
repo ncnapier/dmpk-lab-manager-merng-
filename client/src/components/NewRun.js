@@ -1,36 +1,21 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import DisplayRunsByInstrument from './DisplayRunsByInstrument';
 import {
-  FormTextArea,
   FormSelect,
   FormRadio,
-  FormInput,
   FormGroup,
   FormCheckbox,
   FormButton,
-  FormField,
-  Form,
-  Container
+  Form
 } from 'semantic-ui-react'
-
-
-
 
 const CREATE_RUN = gql`
   mutation createRun( $instrument: String!, $assay: String!, $trays: String!, $username: String!) {
     createRun(instrument: $instrument, assay: $assay, trays: $trays, username: $username) {
-      
       instrument
       assay
       trays
       username
-      
-      
-     
-      
     }
   }
 `;
@@ -42,15 +27,12 @@ const options = [
   { key: 'o', text: 'Other', value: 'other' },
 ]
 
-
 const AddRun = () => {
   const [createRun] = useMutation(CREATE_RUN);
   const [formData, setFormData] = useState({
     instrument: '',
     assay: '',
     trays: '',
-
-
   });
   const [runData, setRunData] = useState(null);
   const [username, setUsername] = useState('');
@@ -77,18 +59,14 @@ const AddRun = () => {
     const { trays } = formData;
     let updatedTrays;
   
-    // Check if the clicked tray is already selected
     const selectedTrays = trays.split(',');
   
     if (selectedTrays.includes(label)) {
-      // If the tray is already selected, remove it
       updatedTrays = selectedTrays.filter(tray => tray !== label).join(',');
     } else {
-      // Otherwise, add it to the selected trays
       updatedTrays = trays ? `${trays},${label}` : label;
     }
   
-    // Update the state with the updated trays
     setFormData({ ...formData, trays: updatedTrays });
   };
 
@@ -119,8 +97,6 @@ const AddRun = () => {
     <div>
       <Form onSubmit={handleSubmit}>
         <FormGroup inline >
-
-
           <label>Instrument</label>
           <FormRadio
             label='Old 4500'
@@ -159,29 +135,19 @@ const AddRun = () => {
           placeholder='Select Assay'
           onChange={handleAssayChange}
         />
-
-
         <Form.Group inline>
           <label>Trays Used:</label>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((num) => (
             <FormCheckbox
               key={num}
               label={num.toString()}
-
-              
               onChange={handleCheckboxChange}
-            />
-            
+            /> 
           ))}
         </Form.Group>
-
-
-
         <FormButton type="submit">Create Run</FormButton>
       </Form>
-      
     </div>
-
   );
 };
 
